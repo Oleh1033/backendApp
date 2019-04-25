@@ -7,6 +7,7 @@ idBillennium = id.idBillennium;
 
 module.exports = function (app, dbKudos) {
   const urlUserData = "https://graph.microsoft.com/v1.0/me";
+  const urlCompanyData = "https://graph.microsoft.com/v1.0/organization?$select=id,displayName";
   const options = {
     method: "GET",
     uri: "https://graph.microsoft.com/v1.0/organization?$select=id,displayName",
@@ -23,7 +24,7 @@ module.exports = function (app, dbKudos) {
     if (token === undefined) {
       return res.sendStatus(401);
     }
-
+    options.uri = urlCompanyData;
     options.headers.Authorization = token;
     request(options).then(function (response) {
       console.log(response);
@@ -46,6 +47,7 @@ module.exports = function (app, dbKudos) {
     if (token === undefined) {
       return res.sendStatus(401);
     }
+    options.uri = urlCompanyData;
     options.headers.Authorization = token;
     request(options).then(function (response) {
       var idCompanyUser = response.value[0].id;
@@ -72,7 +74,7 @@ module.exports = function (app, dbKudos) {
     if (token === undefined) {
       return res.sendStatus(401);
     }
-
+    options.uri = urlCompanyData;
     options.headers.Authorization = token;
     request(options).then(function (response) {
       var idCompanyUser = response.value[0].id;
