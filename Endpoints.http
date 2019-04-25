@@ -1,0 +1,10 @@
+@baseUrl = https://a26eb5d2.ngrok.io/
+@ngrokUrl = https://a26eb5d2.ngrok.io/
+@kudosEndpoint = "/api/kudos"
+
+GET {{baseUrl}}api/kudos
+Authorization: "Bearer 123"
+
+###
+
+GET {{baseUrl}}{{kudosEndpoint}}
